@@ -47,7 +47,7 @@ function backup {
 	echo "Files archived: $arch_files"
 	echo "Directories archived: $arch_directories"
 
-	if [ $src_files -eq $arch_files ]; then
+	if [ $src_directories -eq $arch_directories ]; then
 		echo "Backup of $input completed!"
 		echo "Details about the output backup file: "
 		ls -l $output
@@ -58,4 +58,7 @@ function backup {
 
 for directory in $*; do
 	backup $directory
+	let all=$all+$arch_files+$arch_directories
 done;
+
+echo "TOTAL FILES AND DIRECTORIES: $all"
